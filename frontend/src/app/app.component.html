@@ -1,0 +1,28 @@
+<div class="app-shell" *ngIf="showShell; else publicPage">
+  <div class="mobile-scrim" *ngIf="menuOpen" (click)="closeMenu()"></div>
+  <aside class="app-sidebar" [class.open]="menuOpen">
+    <a class="brand-lockup" routerLink="/dashboard" (click)="closeMenu()"><span class="brand-symbol">I</span><span><b>Campus</b><small>MANAGEMENT SUITE</small></span></a>
+    <div class="nav-caption">OVERVIEW</div>
+    <nav class="main-nav">
+      <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="closeMenu()"><span class="nav-icon">⌂</span>Dashboard</a>
+      <div class="nav-caption">PEOPLE</div>
+      <a routerLink="/students" routerLinkActive="active" (click)="closeMenu()"><span class="nav-icon">♙</span>Students</a>
+      <a routerLink="/teachers" routerLinkActive="active" (click)="closeMenu()"><span class="nav-icon">♧</span>Teachers & Faculty</a>
+      <div class="nav-caption">ACADEMICS</div>
+      <a routerLink="/courses" routerLinkActive="active" (click)="closeMenu()"><span class="nav-icon">▤</span>Courses</a>
+      <a routerLink="/classes" routerLinkActive="active" (click)="closeMenu()"><span class="nav-icon">▦</span>Classes & Divisions</a>
+      <a routerLink="/subjects" routerLinkActive="active" (click)="closeMenu()"><span class="nav-icon">▧</span>Subjects</a>
+      <a routerLink="/attendance" routerLinkActive="active" (click)="closeMenu()"><span class="nav-icon">✓</span>Attendance</a>
+      <a routerLink="/examinations" routerLinkActive="active" (click)="closeMenu()"><span class="nav-icon">▣</span>Examinations</a>
+      <a routerLink="/results" routerLinkActive="active" (click)="closeMenu()"><span class="nav-icon">▥</span>Results</a>
+      <div class="nav-caption">CAMPUS SERVICES</div>
+      <a routerLink="/fees" routerLinkActive="active" (click)="closeMenu()"><span class="nav-icon">₹</span>Fee Management</a>
+      <a routerLink="/assignments" routerLinkActive="active" (click)="closeMenu()"><span class="nav-icon">✎</span>Assignments</a>
+      <a routerLink="/submissions" routerLinkActive="active" (click)="closeMenu()"><span class="nav-icon">⇧</span>Submissions</a>
+      <a routerLink="/announcements" routerLinkActive="active" (click)="closeMenu()"><span class="nav-icon">◉</span>Announcements</a>
+    </nav>
+    <div class="sidebar-bottom"><div class="sidebar-user"><span class="user-avatar">{{userName.charAt(0).toUpperCase()}}</span><span><b>{{userName}}</b><small>{{userRole | titlecase}}</small></span></div><button class="signout" (click)="logout()">↪ <span>Sign out</span></button></div>
+  </aside>
+  <section class="app-main"><header class="topbar"><button class="menu-toggle" (click)="menuOpen=!menuOpen" aria-label="Toggle navigation">☰</button><div class="topbar-title"><span>INSTITUTION WORKSPACE</span><b>Academic Management</b></div><div class="topbar-right"><span class="online-dot"></span><span>Workspace active</span><span class="top-avatar">{{userName.charAt(0).toUpperCase()}}</span></div></header><main class="route-content"><router-outlet></router-outlet></main></section>
+</div>
+<ng-template #publicPage><router-outlet></router-outlet></ng-template>

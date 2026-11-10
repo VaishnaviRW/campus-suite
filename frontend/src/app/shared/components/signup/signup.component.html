@@ -1,0 +1,13 @@
+<div class="auth-shell">
+  <section class="auth-visual"><div class="brand"><span class="brand-mark">C</span><span>Campus Suite</span></div><div class="visual-copy"><span class="eyebrow">YOUR CAMPUS, IN SYNC</span><h1>Make room for better learning.</h1><p>Create your account to connect with your institution and manage your academic journey.</p></div><div class="visual-foot">One platform. Every possibility.</div></section>
+  <section class="auth-panel"><div class="auth-card">
+    <div class="mobile-brand"><span class="brand-mark">C</span> Campus Suite</div><span class="eyebrow">GET STARTED</span><h2>Create your account</h2><p class="muted">Fill in your details to join Campus Suite.</p>
+    <form (ngSubmit)="signup()" #signupForm="ngForm">
+      <label for="name">Full name</label><input id="name" name="name" [(ngModel)]="name" required minlength="2" placeholder="Your full name">
+      <label for="email">Email address</label><input id="email" type="email" name="email" [(ngModel)]="email" required email placeholder="you@institution.com">
+      <label for="password">Password</label><div class="password-wrap"><input id="password" [type]="showPassword?'text':'password'" name="password" [(ngModel)]="password" required minlength="8" placeholder="At least 8 characters"><button type="button" class="show-btn" (click)="showPassword=!showPassword">{{showPassword?'Hide':'Show'}}</button></div>
+      <label for="confirmPassword">Confirm password</label><input id="confirmPassword" type="password" name="confirmPassword" [(ngModel)]="confirmPassword" required placeholder="Re-enter password">
+      <p class="error" *ngIf="errorMessage">{{errorMessage}}</p><button class="primary-btn" type="submit" [disabled]="loading||signupForm.invalid">{{loading?'Creating account...':'Create account'}}</button>
+    </form><p class="switch-auth">Already have an account? <a routerLink="/login">Sign in</a></p><p class="demo-note">The first registered account is assigned the Admin role. Later public signups are Student accounts.</p>
+  </div></section>
+</div>

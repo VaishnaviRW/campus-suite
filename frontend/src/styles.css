@@ -1,0 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+html,body{min-height:100%;margin:0;font-family:Inter,Arial,sans-serif;background:#f5f7fb}button,input,select,textarea{font:inherit}*{box-sizing:border-box}
+/* Shared responsive application foundation */
+:root{--ink:#26344f;--muted:#8793a7;--line:#e9edf5;--brand:#596fda}body{overflow-x:hidden}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #9aa8ff;outline-offset:2px}::selection{background:#dce4ff;color:#263b88}

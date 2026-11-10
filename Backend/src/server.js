@@ -1,0 +1,15 @@
+require('dotenv').config();
+const express=require('express');
+const cors=require('cors');
+const connectDB=require('./config/db');
+const authRoutes=require('./routes/authRoutes');
+const recordRoutes=require('./routes/recordRoutes');
+const app=express();
+app.use(cors({origin:process.env.CLIENT_ORIGIN||'http://localhost:4200'}));
+app.use(express.json({limit:'5mb'}));
+app.get('/api/health',(req,res)=>res.json({status:'ok',service:'EduSphere API'}));
+app.use('/api/auth',authRoutes);
+app.use('/api',recordRoutes);
+app.use((req,res)=>res.status(404).json({message:'Route not found'}));
+const port=process.env.PORT||3000;
+connectDB().then(()=>app.listen(port,()=>console.log(`EduSphere API running on ${port}`))).catch(err=>{console.error('Startup failed:',err.message);process.exit(1);});

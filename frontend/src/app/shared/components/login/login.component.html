@@ -1,0 +1,19 @@
+<div class="auth-shell">
+  <section class="auth-visual">
+    <div class="brand"><span class="brand-mark">C</span><span>Campus Suite</span></div>
+    <div class="visual-copy"><span class="eyebrow">EDUCATION, CONNECTED</span><h1>Everything your institution needs, in one place.</h1><p>Bring students, teachers and academic operations together with a simpler way to manage learning.</p></div>
+    <div class="visual-foot">A smarter way to move education forward.</div>
+  </section>
+  <section class="auth-panel"><div class="auth-card">
+    <div class="mobile-brand"><span class="brand-mark">C</span> Campus Suite</div>
+    <span class="eyebrow">WELCOME BACK</span><h2>Sign in to your account</h2><p class="muted">Enter your details to continue to your campus workspace.</p>
+    <form (ngSubmit)="login()" #loginForm="ngForm">
+      <label for="email">Email address</label><input id="email" type="email" name="email" [(ngModel)]="email" required email placeholder="you@institution.com">
+      <label for="password">Password</label><div class="password-wrap"><input id="password" [type]="showPassword?'text':'password'" name="password" [(ngModel)]="password" required placeholder="Enter your password"><button type="button" class="show-btn" (click)="showPassword=!showPassword">{{showPassword?'Hide':'Show'}}</button></div>
+      <p class="error" *ngIf="errorMessage">{{errorMessage}}</p>
+      <button class="primary-btn" type="submit" [disabled]="loading||loginForm.invalid">{{loading?'Signing in...':'Sign in'}}</button>
+    </form>
+    <p class="switch-auth">New to Campus Suite? <a routerLink="/signup">Create an account</a></p>
+    <p class="demo-note">Your account is securely authenticated by the Campus Suite API.</p>
+  </div></section>
+</div>

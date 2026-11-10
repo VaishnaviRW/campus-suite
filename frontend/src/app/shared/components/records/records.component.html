@@ -1,0 +1,14 @@
+<div class="records-page">
+  <header class="page-head"><div><a routerLink="/dashboard" class="back-link">← Dashboard</a><p class="eyebrow">ACADEMIC MANAGEMENT</p><h1>{{title}}</h1><p class="muted">Create, update, review and maintain {{title.toLowerCase()}} records.</p></div><button class="secondary-btn" (click)="load()">↻ Refresh</button></header>
+  <div class="alert success" *ngIf="success">{{success}}</div><div class="alert error" *ngIf="error">{{error}}</div>
+  <section class="panel form-panel"><div class="panel-title"><div><h2>{{editingId ? 'Update record' : 'Add new record'}}</h2><p>Enter the details below and save.</p></div><span class="count">{{editingId ? 'EDIT MODE' : 'NEW ENTRY'}}</span></div>
+    <form (ngSubmit)="save()"><div class="form-grid"><label *ngFor="let f of fields">{{f.label}}<textarea *ngIf="f.key==='description' || f.key==='message'" [(ngModel)]="form[f.key]" [name]="f.key" rows="2"></textarea><input *ngIf="f.key!=='description' && f.key!=='message'" [type]="f.type || 'text'" [(ngModel)]="form[f.key]" [name]="f.key" required /></label></div>
+      <div class="form-actions"><button class="primary-btn" type="submit">{{editingId ? 'Save changes' : 'Add record'}}</button><button class="secondary-btn" type="button" (click)="reset()">Clear</button></div>
+    </form>
+  </section>
+  <section class="panel table-panel"><div class="panel-title"><div><h2>All {{title}}</h2><p>{{records.length}} record(s) found</p></div></div>
+    <div class="loading" *ngIf="loading">Loading records…</div>
+    <div class="empty" *ngIf="!loading && records.length===0">No records available yet. Add your first record using the form above.</div>
+    <div class="table-wrap" *ngIf="records.length"><table><thead><tr><th *ngFor="let f of fields">{{f.label}}</th><th>Actions</th></tr></thead><tbody><tr *ngFor="let row of records"><td *ngFor="let f of fields">{{value(row,f.key)}}</td><td class="actions"><button type="button" class="text-btn" (click)="edit(row)">Edit</button><button type="button" class="text-btn danger" (click)="remove(row)">Delete</button></td></tr></tbody></table></div>
+  </section>
+</div>
