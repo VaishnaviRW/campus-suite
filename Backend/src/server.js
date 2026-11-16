@@ -5,6 +5,8 @@ const connectDB=require('./config/db');
 const authRoutes=require('./routes/authRoutes');
 const recordRoutes=require('./routes/recordRoutes');
 const app=express();
+const dns = require('node:dns');
+dns.setServers(['8.8.8.8', '8.8.4.4']);
 app.use(cors({origin:process.env.CLIENT_ORIGIN||'http://localhost:4200'}));
 app.use(express.json({limit:'5mb'}));
 app.get('/api/health',(req,res)=>res.json({status:'ok',service:'EduSphere API'}));
